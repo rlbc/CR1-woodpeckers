@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+#This script separates all CR1 elements.
+
 from subprocess import call
 from os import mkdir
 from Bio import SeqIO
@@ -13,7 +16,7 @@ def gravar(entrada):
 
     f_out.close()
 
-#Se o arquivo all.picoides.fasta já existir, abre; senão cria ele.
+#If the file all.picoides.fasta already exists, oppens it; if not, creates.
 try:
     fasta_seqs = SeqIO.parse(open('all.picoides.fasta', 'r'), 'fasta')
 except IOError:
@@ -25,13 +28,13 @@ try:
 except OSError:
     pass
 
-#Abre o arquivo de saida.
+#Oppens exit file.
 try:
     f_out = open('picoides-CR1.fasta', 'w')
 except IOError:
     pass
 
-#Grava todas as sequências que apresentam CR1 no id.
+#Saves all sequences that have CR1 in the id.
 for item in fasta_seqs:
     if 'CR1' in item.id:
         SeqIO.write(item, f_out, 'fasta')
