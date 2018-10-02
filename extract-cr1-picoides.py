@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#This script separates all CR1 elements.
+#This script separates all CR1 elements after parsing of repetitive elements
+#with the script "One Code to Find Then All" (Bailly-Bechet et al. 2014).
 
 from subprocess import call
 from os import mkdir
@@ -16,7 +17,9 @@ def gravar(entrada):
 
     f_out.close()
 
+#Input file containing the elements.
 #If the file all.picoides.fasta already exists, oppens it; if not, creates.
+#This can be changed to extract elements from other files.
 try:
     fasta_seqs = SeqIO.parse(open('all.picoides.fasta', 'r'), 'fasta')
 except IOError:
